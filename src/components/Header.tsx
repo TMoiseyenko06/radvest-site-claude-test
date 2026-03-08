@@ -23,18 +23,18 @@ export default function Header() {
           {/* Logo / Church Name */}
           <Link href="/" className="flex items-center gap-3 shrink-0">
             <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-tan flex items-center justify-center text-primary font-bold text-lg sm:text-xl">
-              {t("РВ", "JN")}
+              {t("РВ", "WN")}
             </div>
             <div className="hidden sm:block">
               <div className="font-bold text-lg leading-tight">
-                {t("Радостная Весть", "Joyful News")}
+                {t("Радостная Весть", "Wonderful News")}
               </div>
               <div className="text-xs text-white/70">
                 Evangelical Baptist Church of Philadelphia
               </div>
             </div>
             <div className="sm:hidden font-bold text-base">
-              {t("Радостная Весть", "Joyful News")}
+              {t("Радостная Весть", "Wonderful News")}
             </div>
           </Link>
 

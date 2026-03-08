@@ -26,7 +26,7 @@ function HeroSection() {
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
             {t("Церковь", "Church")}
-            <span className="text-tan"> {t("«Радостная Весть»", "\"Joyful News\"")}</span>
+            <span className="text-tan"> {t("«Радостная Весть»", "\"Wonderful News\"")}</span>
           </h1>
           <p className="text-lg sm:text-xl text-white/80 mb-4">
             {t(
@@ -162,7 +162,7 @@ function AboutPreviewSection() {
             <p className="text-gray-600 leading-relaxed mb-4">
               {t(
                 "Евангельская Баптистская Церковь Филадельфии «Радостная Весть» была основана в 1913 году иммигрантами из России, Украины и Белоруссии. На протяжении многих лет она оставалась единственной славянской евангельской церковью в Филадельфии.",
-                "The Evangelical Baptist Church of Philadelphia \"Joyful News\" was founded in 1913 by immigrants from Russia, Ukraine, and Belarus. For many years, it remained the only Slavic evangelical church in Philadelphia."
+                "The Evangelical Baptist Church of Philadelphia \"Wonderful News\" was founded in 1913 by immigrants from Russia, Ukraine, and Belarus. For many years, it remained the only Slavic evangelical church in Philadelphia."
               )}
             </p>
             <p className="text-gray-600 leading-relaxed mb-6">

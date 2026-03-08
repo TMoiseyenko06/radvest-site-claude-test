@@ -14,12 +14,12 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-3 mb-4">
               <div className="w-10 h-10 rounded-full bg-tan flex items-center justify-center text-primary font-bold text-lg">
-                {t("РВ", "JN")}
+                {t("РВ", "WN")}
               </div>
               <div>
-                <div className="font-bold text-lg">{t("Радостная Весть", "Joyful News")}</div>
+                <div className="font-bold text-lg">{t("Радостная Весть", "Wonderful News")}</div>
                 <div className="text-xs text-white/60">
-                  {t("Church of Joyful News", "Church of Joyful News")}
+                  {t("Church of Wonderful News", "Church of Wonderful News")}
                 </div>
               </div>
             </div>

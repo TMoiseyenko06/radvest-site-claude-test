@@ -37,7 +37,7 @@ export default function ChurchContent() {
               <p>
                 {t(
                   "Евангельская Баптистская Церковь Филадельфии «Радостная Весть» была основана в 1913 году иммигрантами из России, Украины и Белоруссии. Первоначально она называлась Первая Русская Баптистская Церковь Филадельфии.",
-                  "The Evangelical Baptist Church of Philadelphia \"Joyful News\" was founded in 1913 by immigrants from Russia, Ukraine, and Belarus. It was originally called the First Russian Baptist Church of Philadelphia."
+                  "The Evangelical Baptist Church of Philadelphia \"Wonderful News\" was founded in 1913 by immigrants from Russia, Ukraine, and Belarus. It was originally called the First Russian Baptist Church of Philadelphia."
                 )}
               </p>
               <p>
