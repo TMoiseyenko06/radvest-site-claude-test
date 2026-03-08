@@ -9,7 +9,7 @@ function HeroSection() {
           className="absolute inset-0"
           style={{
             backgroundImage:
-              "radial-gradient(circle at 25% 25%, rgba(232,144,144,0.3) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(232,144,144,0.2) 0%, transparent 50%)",
+              "radial-gradient(circle at 25% 25%, rgba(224,48,48,0.3) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(224,48,48,0.2) 0%, transparent 50%)",
           }}
         />
       </div>
@@ -32,7 +32,7 @@ function HeroSection() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/livestream"
-              className="px-8 py-3 bg-accent text-primary-dark font-bold rounded-lg hover:bg-accent-light transition-colors w-full sm:w-auto text-center"
+              className="px-8 py-3 bg-accent text-white font-bold rounded-lg hover:bg-accent-light transition-colors w-full sm:w-auto text-center"
             >
               Смотреть трансляцию
             </Link>
@@ -51,7 +51,7 @@ function HeroSection() {
         <svg viewBox="0 0 1440 80" fill="none" className="w-full">
           <path
             d="M0,48L80,42.7C160,37,320,27,480,32C640,37,800,59,960,58.7C1120,59,1280,37,1360,26.7L1440,16L1440,80L1360,80C1280,80,1120,80,960,80C800,80,640,80,480,80C320,80,160,80,80,80L0,80Z"
-            fill="#f5ece0"
+            fill="#f8f0e6"
           />
         </svg>
       </div>
@@ -237,7 +237,7 @@ function LiveStreamBanner() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
             href="/livestream"
-            className="px-8 py-3 bg-accent text-primary-dark font-bold rounded-lg hover:bg-accent-light transition-colors"
+            className="px-8 py-3 bg-accent text-white font-bold rounded-lg hover:bg-accent-light transition-colors"
           >
             Смотреть трансляцию
           </Link>
