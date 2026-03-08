@@ -13,7 +13,7 @@ export default function ChurchPage() {
       <section className="bg-primary text-white py-16 sm:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl sm:text-5xl font-bold mb-4">
-            Наша <span className="text-accent">Церковь</span>
+            Наша <span className="text-tan">Церковь</span>
           </h1>
           <p className="text-white/70 max-w-2xl mx-auto text-lg">
             Евангельская Баптистская Церковь Филадельфии
@@ -25,7 +25,7 @@ export default function ChurchPage() {
       <section className="py-16 sm:py-24 bg-warm">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-2xl shadow-lg p-8 sm:p-12">
-            <div className="inline-block px-3 py-1 bg-accent/10 text-accent rounded-full text-sm font-medium mb-6">
+            <div className="inline-block px-3 py-1 bg-tan/20 text-tan rounded-full text-sm font-medium mb-6">
               Наша история
             </div>
             <h2 className="text-3xl font-bold text-primary mb-8">
@@ -71,7 +71,7 @@ export default function ChurchPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <div className="bg-warm rounded-2xl p-8 text-center">
-              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-accent/20 text-accent flex items-center justify-center">
+              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 text-primary flex items-center justify-center">
                 <svg
                   className="w-8 h-8"
                   fill="none"
@@ -100,7 +100,7 @@ export default function ChurchPage() {
             </div>
 
             <div className="bg-warm rounded-2xl p-8 text-center">
-              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-accent/20 text-accent flex items-center justify-center">
+              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 text-primary flex items-center justify-center">
                 <svg
                   className="w-8 h-8"
                   fill="none"
@@ -210,7 +210,7 @@ export default function ChurchPage() {
       <section className="py-16 sm:py-24 bg-primary text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl font-bold mb-12">
-            Наши <span className="text-accent">ценности</span>
+            Наши <span className="text-tan">ценности</span>
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {[
@@ -223,7 +223,7 @@ export default function ChurchPage() {
                 key={value.title}
                 className="bg-white/10 rounded-xl p-6 backdrop-blur-sm"
               >
-                <h3 className="text-lg font-bold text-accent mb-2">
+                <h3 className="text-lg font-bold text-tan mb-2">
                   {value.title}
                 </h3>
                 <p className="text-white/70 text-sm">{value.description}</p>

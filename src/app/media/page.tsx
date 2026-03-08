@@ -74,7 +74,7 @@ export default function MediaPage() {
       <section className="bg-primary text-white py-16 sm:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl sm:text-5xl font-bold mb-4">
-            <span className="text-accent">Медиа</span>
+            <span className="text-tan">Медиа</span>
           </h1>
           <p className="text-white/70 max-w-2xl mx-auto text-lg">
             Архив наших богослужений, проповеди и музыка
@@ -131,14 +131,14 @@ export default function MediaPage() {
                   {category.description}
                 </p>
                 {"count" in category && (
-                  <span className="text-accent font-bold text-sm">
+                  <span className="text-primary font-bold text-sm">
                     {category.count} записей
                   </span>
                 )}
                 {"href" in category && (
                   <Link
                     href={category.href!}
-                    className="text-accent font-medium text-sm hover:underline"
+                    className="text-primary font-medium text-sm hover:underline"
                   >
                     Перейти →
                   </Link>

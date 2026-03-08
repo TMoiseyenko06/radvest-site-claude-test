@@ -20,7 +20,7 @@ export default function Header() {
         <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo / Church Name */}
           <Link href="/" className="flex items-center gap-3 shrink-0">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-accent flex items-center justify-center text-white font-bold text-lg sm:text-xl">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-tan flex items-center justify-center text-primary font-bold text-lg sm:text-xl">
               РВ
             </div>
             <div className="hidden sm:block">

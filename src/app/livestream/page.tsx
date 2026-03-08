@@ -19,7 +19,7 @@ export default function LiveStreamPage() {
             </span>
           </div>
           <h1 className="text-4xl sm:text-5xl font-bold mb-4">
-            Прямая <span className="text-accent">Трансляция</span>
+            Прямая <span className="text-tan">Трансляция</span>
           </h1>
           <p className="text-white/70 max-w-2xl mx-auto">
             Присоединяйтесь к нашим богослужениям онлайн, где бы вы ни
@@ -72,7 +72,7 @@ export default function LiveStreamPage() {
                 </h3>
               </div>
               <p className="text-gray-600 mb-2">Каждое воскресенье</p>
-              <p className="text-3xl font-bold text-accent">10:00 AM</p>
+              <p className="text-3xl font-bold text-primary">10:00 AM</p>
               <p className="text-sm text-gray-500 mt-1">
                 Восточное время (ET)
               </p>
@@ -100,7 +100,7 @@ export default function LiveStreamPage() {
                 </h3>
               </div>
               <p className="text-gray-600 mb-2">Каждое воскресенье</p>
-              <p className="text-3xl font-bold text-accent">6:00 PM</p>
+              <p className="text-3xl font-bold text-primary">6:00 PM</p>
               <p className="text-sm text-gray-500 mt-1">
                 Восточное время (ET)
               </p>
@@ -117,7 +117,7 @@ export default function LiveStreamPage() {
                 href="https://www.christianworldmedia.com/livechannel/radvest"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 p-4 rounded-lg border-2 border-gray-100 hover:border-accent transition-colors"
+                className="flex items-center gap-3 p-4 rounded-lg border-2 border-gray-100 hover:border-primary transition-colors"
               >
                 <div className="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0">
                   <svg
@@ -146,7 +146,7 @@ export default function LiveStreamPage() {
                 href="https://www.facebook.com/radvest/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 p-4 rounded-lg border-2 border-gray-100 hover:border-accent transition-colors"
+                className="flex items-center gap-3 p-4 rounded-lg border-2 border-gray-100 hover:border-primary transition-colors"
               >
                 <div className="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0">
                   <svg

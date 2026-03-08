@@ -17,12 +17,12 @@ function HeroSection() {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-32">
         <div className="text-center max-w-3xl mx-auto">
-          <div className="inline-block px-4 py-1.5 bg-accent/20 rounded-full text-accent text-sm font-medium mb-6">
+          <div className="inline-block px-4 py-1.5 bg-tan/30 rounded-full text-tan text-sm font-medium mb-6">
             Добро пожаловать
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
             Церковь
-            <span className="text-accent"> «Радостная Весть»</span>
+            <span className="text-tan"> «Радостная Весть»</span>
           </h1>
           <p className="text-lg sm:text-xl text-white/80 mb-4">
             Евангельская Баптистская Церковь Филадельфии
@@ -33,7 +33,7 @@ function HeroSection() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/livestream"
-              className="px-8 py-3 bg-accent text-white font-bold rounded-lg hover:bg-accent-light transition-colors w-full sm:w-auto text-center"
+              className="px-8 py-3 bg-tan text-charcoal font-bold rounded-lg hover:bg-tan-light transition-colors w-full sm:w-auto text-center"
             >
               Смотреть трансляцию
             </Link>
@@ -52,7 +52,7 @@ function HeroSection() {
         <svg viewBox="0 0 1440 80" fill="none" className="w-full">
           <path
             d="M0,48L80,42.7C160,37,320,27,480,32C640,37,800,59,960,58.7C1120,59,1280,37,1360,26.7L1440,16L1440,80L1360,80C1280,80,1120,80,960,80C800,80,640,80,480,80C320,80,160,80,80,80L0,80Z"
-            fill="#f8f0e6"
+            fill="#FFF8F0"
           />
         </svg>
       </div>
@@ -117,7 +117,7 @@ function ServiceTimesSection() {
               <div className="space-y-3">
                 {service.times.map((t) => (
                   <div key={t.time} className="bg-warm rounded-lg p-3">
-                    <div className="text-2xl font-bold text-accent">
+                    <div className="text-2xl font-bold text-primary">
                       {t.time}
                     </div>
                     <div className="text-sm text-gray-700 font-medium">
@@ -141,7 +141,7 @@ function AboutPreviewSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
-            <div className="inline-block px-3 py-1 bg-accent/10 text-accent rounded-full text-sm font-medium mb-4">
+            <div className="inline-block px-3 py-1 bg-tan/20 text-tan rounded-full text-sm font-medium mb-4">
               С 1913 года
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold text-primary mb-6">
@@ -160,7 +160,7 @@ function AboutPreviewSection() {
             </p>
             <Link
               href="/church"
-              className="inline-flex items-center gap-2 text-primary font-medium hover:text-accent transition-colors"
+              className="inline-flex items-center gap-2 text-primary font-medium hover:text-primary-light transition-colors"
             >
               Узнать больше
               <svg
@@ -183,7 +183,7 @@ function AboutPreviewSection() {
               <div className="bg-white rounded-xl shadow-lg p-6 sm:p-8">
                 <blockquote className="text-center">
                   <svg
-                    className="w-10 h-10 mx-auto mb-4 text-accent/40"
+                    className="w-10 h-10 mx-auto mb-4 text-primary/40"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                   >
@@ -193,7 +193,7 @@ function AboutPreviewSection() {
                     «Зрелые и радостные дети Божьи, созидающие церковь и влияющие
                     на мир»
                   </p>
-                  <footer className="text-sm text-accent font-medium">
+                  <footer className="text-sm text-primary font-medium">
                     — Наше видение
                   </footer>
                 </blockquote>
@@ -226,7 +226,7 @@ function LiveStreamBanner() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
             href="/livestream"
-            className="px-8 py-3 bg-accent text-white font-bold rounded-lg hover:bg-accent-light transition-colors"
+            className="px-8 py-3 bg-tan text-charcoal font-bold rounded-lg hover:bg-tan-light transition-colors"
           >
             Смотреть трансляцию
           </Link>
@@ -294,7 +294,7 @@ function LocationSection() {
                 </div>
                 <div>
                   <h3 className="font-bold text-primary mb-1">Телефон</h3>
-                  <a href="tel:+12159644468" className="text-gray-600 hover:text-accent transition-colors">(215) 964-4468</a>
+                  <a href="tel:+12159644468" className="text-gray-600 hover:text-primary-light transition-colors">(215) 964-4468</a>
                 </div>
               </div>
             </div>
@@ -308,7 +308,7 @@ function LocationSection() {
                 </div>
                 <div>
                   <h3 className="font-bold text-primary mb-1">Email</h3>
-                  <a href="mailto:radvest@gmail.com" className="text-gray-600 hover:text-accent transition-colors">radvest@gmail.com</a>
+                  <a href="mailto:radvest@gmail.com" className="text-gray-600 hover:text-primary-light transition-colors">radvest@gmail.com</a>
                 </div>
               </div>
             </div>

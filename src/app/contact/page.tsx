@@ -22,7 +22,7 @@ export default function ContactPage() {
       <section className="bg-primary text-white py-16 sm:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl sm:text-5xl font-bold mb-4">
-            <span className="text-accent">Контакты</span>
+            <span className="text-tan">Контакты</span>
           </h1>
           <p className="text-white/70 max-w-2xl mx-auto text-lg">
             Свяжитесь с нами — мы будем рады ответить на ваши вопросы
@@ -98,7 +98,7 @@ export default function ContactPage() {
                       <h3 className="font-bold text-primary mb-1">Телефон</h3>
                       <a
                         href="tel:+12159644468"
-                        className="text-gray-600 hover:text-accent transition-colors"
+                        className="text-gray-600 hover:text-primary transition-colors"
                       >
                         (215) 964-4468
                       </a>
@@ -127,7 +127,7 @@ export default function ContactPage() {
                       <h3 className="font-bold text-primary mb-1">Email</h3>
                       <a
                         href="mailto:radvest@gmail.com"
-                        className="text-gray-600 hover:text-accent transition-colors"
+                        className="text-gray-600 hover:text-primary transition-colors"
                       >
                         radvest@gmail.com
                       </a>
@@ -137,7 +137,7 @@ export default function ContactPage() {
 
                 {/* Service Times */}
                 <div className="bg-primary rounded-xl p-6 text-white">
-                  <h3 className="font-bold text-accent mb-4">
+                  <h3 className="font-bold text-tan mb-4">
                     Расписание служений
                   </h3>
                   <div className="space-y-3 text-sm">
@@ -199,7 +199,7 @@ export default function ContactPage() {
                       setSubmitted(false);
                       setFormData({ name: "", email: "", phone: "", message: "" });
                     }}
-                    className="mt-4 text-accent font-medium hover:underline"
+                    className="mt-4 text-primary font-medium hover:underline"
                   >
                     Отправить ещё одно сообщение
                   </button>
@@ -224,7 +224,7 @@ export default function ContactPage() {
                       onChange={(e) =>
                         setFormData({ ...formData, name: e.target.value })
                       }
-                      className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent outline-none transition-colors"
+                      className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-colors"
                       placeholder="Ваше имя"
                     />
                   </div>
@@ -244,7 +244,7 @@ export default function ContactPage() {
                       onChange={(e) =>
                         setFormData({ ...formData, email: e.target.value })
                       }
-                      className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent outline-none transition-colors"
+                      className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-colors"
                       placeholder="your@email.com"
                     />
                   </div>
@@ -263,7 +263,7 @@ export default function ContactPage() {
                       onChange={(e) =>
                         setFormData({ ...formData, phone: e.target.value })
                       }
-                      className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent outline-none transition-colors"
+                      className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-colors"
                       placeholder="(XXX) XXX-XXXX"
                     />
                   </div>
@@ -283,7 +283,7 @@ export default function ContactPage() {
                       onChange={(e) =>
                         setFormData({ ...formData, message: e.target.value })
                       }
-                      className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent outline-none transition-colors resize-none"
+                      className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-colors resize-none"
                       placeholder="Ваше сообщение..."
                     />
                   </div>

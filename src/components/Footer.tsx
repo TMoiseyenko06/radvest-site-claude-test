@@ -8,7 +8,7 @@ export default function Footer() {
           {/* Church Info */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center text-white font-bold text-lg">
+              <div className="w-10 h-10 rounded-full bg-tan flex items-center justify-center text-primary font-bold text-lg">
                 РВ
               </div>
               <div>
@@ -26,7 +26,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-bold text-accent mb-4">Навигация</h3>
+            <h3 className="font-bold text-tan mb-4">Навигация</h3>
             <ul className="space-y-2">
               {[
                 { href: "/", label: "Главная" },
@@ -38,7 +38,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-white/70 hover:text-accent transition-colors text-sm"
+                    className="text-white/70 hover:text-tan transition-colors text-sm"
                   >
                     {link.label}
                   </Link>
@@ -49,11 +49,11 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h3 className="font-bold text-accent mb-4">Контакты</h3>
+            <h3 className="font-bold text-tan mb-4">Контакты</h3>
             <div className="space-y-3 text-sm text-white/70">
               <div className="flex items-start gap-2">
                 <svg
-                  className="w-4 h-4 mt-0.5 shrink-0 text-accent"
+                  className="w-4 h-4 mt-0.5 shrink-0 text-tan"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -75,7 +75,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-2">
                 <svg
-                  className="w-4 h-4 shrink-0 text-accent"
+                  className="w-4 h-4 shrink-0 text-tan"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -89,14 +89,14 @@ export default function Footer() {
                 </svg>
                 <a
                   href="tel:+12159644468"
-                  className="hover:text-accent transition-colors"
+                  className="hover:text-tan transition-colors"
                 >
                   (215) 964-4468
                 </a>
               </div>
               <div className="flex items-center gap-2">
                 <svg
-                  className="w-4 h-4 shrink-0 text-accent"
+                  className="w-4 h-4 shrink-0 text-tan"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -110,7 +110,7 @@ export default function Footer() {
                 </svg>
                 <a
                   href="mailto:radvest@gmail.com"
-                  className="hover:text-accent transition-colors"
+                  className="hover:text-tan transition-colors"
                 >
                   radvest@gmail.com
                 </a>
@@ -123,7 +123,7 @@ export default function Footer() {
                 href="https://www.facebook.com/radvest/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors"
+                className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-tan transition-colors"
                 aria-label="Facebook"
               >
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -134,7 +134,7 @@ export default function Footer() {
                 href="https://www.instagram.com/radvestyouth/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors"
+                className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-tan transition-colors"
                 aria-label="Instagram"
               >
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
