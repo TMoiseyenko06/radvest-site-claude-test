@@ -1,11 +1,49 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import NextService from "@/components/NextService";
 import YouTubeLivestream from "@/components/YouTubeLivestream";
 import { useLanguage } from "@/lib/i18n";
 
+interface TempServiceData {
+  id: string;
+  date: string;
+  hour: number;
+  minute: number;
+  name: string;
+  nameEn: string;
+  durationHours: number;
+}
+
+function formatTempTime(hour: number, minute: number) {
+  const ampm = hour >= 12 ? "PM" : "AM";
+  const h12 = hour % 12 || 12;
+  return `${h12}:${String(minute).padStart(2, "0")} ${ampm}`;
+}
+
+function formatTempDate(dateStr: string) {
+  const [year, month, day] = dateStr.split("-").map(Number);
+  const date = new Date(year, month - 1, day);
+  const dayNames = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
+  const dayNamesEn = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const months = ["янв", "фев", "мар", "апр", "мая", "июн", "июл", "авг", "сен", "окт", "ноя", "дек"];
+  const monthsEn = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  return {
+    ru: `${dayNames[date.getDay()]}, ${day} ${months[date.getMonth()]}`,
+    en: `${dayNamesEn[date.getDay()]}, ${monthsEn[date.getMonth()]} ${day}`,
+  };
+}
+
 export default function LivestreamContent() {
   const { t } = useLanguage();
+  const [tempServices, setTempServices] = useState<TempServiceData[]>([]);
+
+  useEffect(() => {
+    fetch("/api/services")
+      .then((res) => (res.ok ? res.json() : []))
+      .then((data) => setTempServices(data))
+      .catch(() => setTempServices([]));
+  }, []);
 
   return (
     <>
@@ -93,6 +131,43 @@ export default function LivestreamContent() {
               <p className="text-sm text-gray-500 mt-1">{t("Восточное время (ET)", "Eastern Time (ET)")}</p>
             </div>
           </div>
+
+          {/* Temporary / Special Services */}
+          {tempServices.length > 0 && (
+            <div className="mt-8">
+              <h3 className="text-xl font-bold text-primary mb-4 text-center">
+                {t("Специальные служения", "Special Services")}
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {tempServices.map((ts) => {
+                  const dateInfo = formatTempDate(ts.date);
+                  return (
+                    <div key={ts.id} className="bg-white rounded-xl shadow-md p-6 border-l-4 border-tan">
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="w-10 h-10 rounded-full bg-tan/20 text-tan flex items-center justify-center">
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                          </svg>
+                        </div>
+                        <div>
+                          <h4 className="font-bold text-primary">
+                            {t(ts.name, ts.nameEn)}
+                          </h4>
+                          <p className="text-sm text-gray-500">
+                            {t(dateInfo.ru, dateInfo.en)}
+                          </p>
+                        </div>
+                      </div>
+                      <p className="text-2xl font-bold text-primary">{formatTempTime(ts.hour, ts.minute)}</p>
+                      <p className="text-sm text-gray-500 mt-1">
+                        {ts.durationHours} {t(ts.durationHours === 1 ? "час" : "часа", ts.durationHours === 1 ? "hour" : "hours")}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
 
           {/* Other ways to watch */}
           <div className="mt-12 bg-white rounded-xl shadow-md p-8">

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useLanguage } from "@/lib/i18n";
 
 interface ServiceSchedule {
@@ -9,6 +9,17 @@ interface ServiceSchedule {
   minute: number;
   name: string;
   nameEn: string;
+  durationMs: number;
+}
+
+interface TempServiceData {
+  id: string;
+  date: string;
+  hour: number;
+  minute: number;
+  name: string;
+  nameEn: string;
+  durationHours: number;
 }
 
 interface ServiceInfo {
@@ -19,6 +30,7 @@ interface ServiceInfo {
   time: string;
   timeEn: string;
   date: Date;
+  durationMs: number;
 }
 
 interface ServiceState {
@@ -27,12 +39,12 @@ interface ServiceState {
   countdown: { days: number; hours: number; minutes: number; seconds: number };
 }
 
-const SERVICE_DURATION_MS = 2 * 60 * 60 * 1000; // 2 hours
+const DEFAULT_DURATION_MS = 2 * 60 * 60 * 1000; // 2 hours
 
 const SERVICES: ServiceSchedule[] = [
-  { dayOfWeek: 0, hour: 10, minute: 0, name: "Утреннее служение", nameEn: "Sunday Morning Service" },
-  { dayOfWeek: 0, hour: 18, minute: 0, name: "Вечернее служение", nameEn: "Sunday Evening Service" },
-  { dayOfWeek: 4, hour: 19, minute: 0, name: "Служение по четвергам", nameEn: "Thursday Service" },
+  { dayOfWeek: 0, hour: 10, minute: 0, name: "Утреннее служение", nameEn: "Sunday Morning Service", durationMs: DEFAULT_DURATION_MS },
+  { dayOfWeek: 0, hour: 18, minute: 0, name: "Вечернее служение", nameEn: "Sunday Evening Service", durationMs: DEFAULT_DURATION_MS },
+  { dayOfWeek: 4, hour: 19, minute: 0, name: "Служение по четвергам", nameEn: "Thursday Service", durationMs: DEFAULT_DURATION_MS },
 ];
 
 const DAY_NAMES_RU = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
@@ -40,26 +52,30 @@ const DAY_NAMES_EN = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "F
 const MONTHS_RU = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
 const MONTHS_EN = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-function buildServiceInfo(service: ServiceSchedule, date: Date): ServiceInfo {
-  const timeStr = `${service.hour}:${String(service.minute).padStart(2, "0")}`;
+function buildServiceInfo(name: string, nameEn: string, date: Date, hour: number, minute: number, durationMs: number): ServiceInfo {
+  const timeStr = `${hour}:${String(minute).padStart(2, "0")}`;
   return {
-    name: service.name,
-    nameEn: service.nameEn,
-    day: DAY_NAMES_RU[service.dayOfWeek],
-    dayEn: DAY_NAMES_EN[service.dayOfWeek],
+    name,
+    nameEn,
+    day: DAY_NAMES_RU[date.getDay()],
+    dayEn: DAY_NAMES_EN[date.getDay()],
     time: `${date.getDate()} ${MONTHS_RU[date.getMonth()]}, ${timeStr}`,
     timeEn: `${MONTHS_EN[date.getMonth()]} ${date.getDate()}, ${timeStr}`,
     date,
+    durationMs,
   };
 }
 
-function getServiceState(): ServiceState {
+function getServiceState(tempServices: TempServiceData[]): ServiceState {
   const now = new Date();
   const nowMs = now.getTime();
 
-  // Check if any service is currently in progress
+  // Build a unified list of candidate service dates (start time + duration)
+  const candidates: { startMs: number; durationMs: number; info: ServiceInfo }[] = [];
+
+  // Add recurring services (check this week and next week)
   for (const service of SERVICES) {
-    for (let weekOffset = -1; weekOffset <= 0; weekOffset++) {
+    for (let weekOffset = -1; weekOffset <= 1; weekOffset++) {
       const candidate = new Date(now);
       const currentDay = now.getDay();
       let daysUntil = service.dayOfWeek - currentDay;
@@ -69,16 +85,35 @@ function getServiceState(): ServiceState {
       candidate.setDate(now.getDate() + daysUntil);
       candidate.setHours(service.hour, service.minute, 0, 0);
 
-      const startMs = candidate.getTime();
-      const endMs = startMs + SERVICE_DURATION_MS;
+      candidates.push({
+        startMs: candidate.getTime(),
+        durationMs: service.durationMs,
+        info: buildServiceInfo(service.name, service.nameEn, candidate, service.hour, service.minute, service.durationMs),
+      });
+    }
+  }
 
-      if (nowMs >= startMs && nowMs < endMs) {
-        return {
-          type: "in_progress",
-          service: buildServiceInfo(service, candidate),
-          countdown: { days: 0, hours: 0, minutes: 0, seconds: 0 },
-        };
-      }
+  // Add temporary services
+  for (const ts of tempServices) {
+    const [year, month, day] = ts.date.split("-").map(Number);
+    const candidate = new Date(year, month - 1, day, ts.hour, ts.minute, 0, 0);
+    const durationMs = (ts.durationHours || 2) * 60 * 60 * 1000;
+
+    candidates.push({
+      startMs: candidate.getTime(),
+      durationMs,
+      info: buildServiceInfo(ts.name, ts.nameEn, candidate, ts.hour, ts.minute, durationMs),
+    });
+  }
+
+  // Check if any service is currently in progress
+  for (const c of candidates) {
+    if (nowMs >= c.startMs && nowMs < c.startMs + c.durationMs) {
+      return {
+        type: "in_progress",
+        service: c.info,
+        countdown: { days: 0, hours: 0, minutes: 0, seconds: 0 },
+      };
     }
   }
 
@@ -86,22 +121,11 @@ function getServiceState(): ServiceState {
   let closest: ServiceInfo | null = null;
   let closestDiff = Infinity;
 
-  for (const service of SERVICES) {
-    for (let weekOffset = 0; weekOffset <= 1; weekOffset++) {
-      const candidate = new Date(now);
-      const currentDay = now.getDay();
-      let daysUntil = service.dayOfWeek - currentDay;
-      if (daysUntil < 0) daysUntil += 7;
-      daysUntil += weekOffset * 7;
-
-      candidate.setDate(now.getDate() + daysUntil);
-      candidate.setHours(service.hour, service.minute, 0, 0);
-
-      const diff = candidate.getTime() - nowMs;
-      if (diff > 0 && diff < closestDiff) {
-        closestDiff = diff;
-        closest = buildServiceInfo(service, candidate);
-      }
+  for (const c of candidates) {
+    const diff = c.startMs - nowMs;
+    if (diff > 0 && diff < closestDiff) {
+      closestDiff = diff;
+      closest = c.info;
     }
   }
 
@@ -120,16 +144,26 @@ function getServiceState(): ServiceState {
 
 export default function NextService() {
   const [state, setState] = useState<ServiceState | null>(null);
+  const [tempServices, setTempServices] = useState<TempServiceData[]>([]);
   const { t } = useLanguage();
 
+  // Fetch temporary services once on mount
   useEffect(() => {
-    function update() {
-      setState(getServiceState());
-    }
+    fetch("/api/services")
+      .then((res) => (res.ok ? res.json() : []))
+      .then((data) => setTempServices(data))
+      .catch(() => setTempServices([]));
+  }, []);
+
+  const update = useCallback(() => {
+    setState(getServiceState(tempServices));
+  }, [tempServices]);
+
+  useEffect(() => {
     update();
     const interval = setInterval(update, 1000);
     return () => clearInterval(interval);
-  }, []);
+  }, [update]);
 
   if (!state) return null;
 
