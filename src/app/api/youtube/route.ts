@@ -14,12 +14,30 @@ interface YouTubeStream {
 }
 
 async function resolveChannelId(): Promise<string | null> {
-  // Try channels endpoint with forHandle
+  // Try with @ prefix (forHandle expects handle without @)
   const url = `${YOUTUBE_API}/channels?part=id&forHandle=${CHANNEL_HANDLE}&key=${API_KEY}`;
   const res = await fetch(url);
-  if (!res.ok) return null;
-  const data = await res.json();
-  return data.items?.[0]?.id ?? null;
+  if (res.ok) {
+    const data = await res.json();
+    if (data.items?.[0]?.id) {
+      return data.items[0].id;
+    }
+  }
+
+  // Fallback: search for the channel by name
+  const searchUrl = `${YOUTUBE_API}/search?part=snippet&q=${CHANNEL_HANDLE}&type=channel&maxResults=1&key=${API_KEY}`;
+  const searchRes = await fetch(searchUrl);
+  if (searchRes.ok) {
+    const searchData = await searchRes.json();
+    if (searchData.items?.[0]?.snippet?.channelId) {
+      return searchData.items[0].snippet.channelId;
+    }
+    if (searchData.items?.[0]?.id?.channelId) {
+      return searchData.items[0].id.channelId;
+    }
+  }
+
+  return null;
 }
 
 async function searchBroadcasts(
@@ -99,7 +117,7 @@ export async function GET() {
     const channelId = await resolveChannelId();
     if (!channelId) {
       return NextResponse.json(
-        { error: "Could not resolve channel", live: [], upcoming: [] },
+        { error: "Could not resolve channel", live: [], upcoming: [], debug: { handle: CHANNEL_HANDLE } },
         { status: 200 }
       );
     }
