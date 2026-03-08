@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import NextService from "@/components/NextService";
 import YouTubeLivestream from "@/components/YouTubeLivestream";
 
 export const metadata: Metadata = {
@@ -28,6 +29,9 @@ export default function LiveStreamPage() {
           </p>
         </div>
       </section>
+
+      {/* Countdown / In Progress */}
+      <NextService />
 
       {/* YouTube Live Stream / Upcoming */}
       <section className="py-8 sm:py-12 bg-gray-900">
