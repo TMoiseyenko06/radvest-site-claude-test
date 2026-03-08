@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import YouTubeLivestream from "@/components/YouTubeLivestream";
 
 export const metadata: Metadata = {
   title: "Прямая Трансляция — Радостная Весть",
@@ -28,17 +29,10 @@ export default function LiveStreamPage() {
         </div>
       </section>
 
-      {/* Stream Embed */}
+      {/* YouTube Live Stream / Upcoming */}
       <section className="py-8 sm:py-12 bg-gray-900">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="aspect-video bg-black rounded-xl overflow-hidden shadow-2xl relative">
-            <iframe
-              src="https://www.christianworldmedia.com/livechannel/radvest"
-              className="w-full h-full"
-              allowFullScreen
-              title="Прямая трансляция служения"
-            />
-          </div>
+          <YouTubeLivestream />
         </div>
       </section>
 
@@ -49,7 +43,7 @@ export default function LiveStreamPage() {
             Расписание трансляций
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             <div className="bg-white rounded-xl shadow-md p-6">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center">
@@ -68,10 +62,9 @@ export default function LiveStreamPage() {
                   </svg>
                 </div>
                 <h3 className="text-lg font-bold text-primary">
-                  Утреннее служение
+                  Воскресенье утро
                 </h3>
               </div>
-              <p className="text-gray-600 mb-2">Каждое воскресенье</p>
               <p className="text-3xl font-bold text-primary">10:00 AM</p>
               <p className="text-sm text-gray-500 mt-1">
                 Восточное время (ET)
@@ -96,11 +89,37 @@ export default function LiveStreamPage() {
                   </svg>
                 </div>
                 <h3 className="text-lg font-bold text-primary">
-                  Вечернее служение
+                  Воскресенье вечер
                 </h3>
               </div>
-              <p className="text-gray-600 mb-2">Каждое воскресенье</p>
               <p className="text-3xl font-bold text-primary">6:00 PM</p>
+              <p className="text-sm text-gray-500 mt-1">
+                Восточное время (ET)
+              </p>
+            </div>
+
+            <div className="bg-white rounded-xl shadow-md p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center">
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                    />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-bold text-primary">
+                  Четверг
+                </h3>
+              </div>
+              <p className="text-3xl font-bold text-primary">7:00 PM</p>
               <p className="text-sm text-gray-500 mt-1">
                 Восточное время (ET)
               </p>
@@ -113,6 +132,48 @@ export default function LiveStreamPage() {
               Другие способы просмотра
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <a
+                href="https://www.youtube.com/@Radostnayavest"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 p-4 rounded-lg border-2 border-gray-100 hover:border-primary transition-colors"
+              >
+                <div className="w-10 h-10 rounded-lg bg-red-50 text-red-600 flex items-center justify-center shrink-0">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                  </svg>
+                </div>
+                <div>
+                  <div className="font-medium text-primary text-sm">
+                    YouTube
+                  </div>
+                  <div className="text-xs text-gray-500">@Radostnayavest</div>
+                </div>
+              </a>
+
+              <a
+                href="https://www.facebook.com/radvest/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 p-4 rounded-lg border-2 border-gray-100 hover:border-primary transition-colors"
+              >
+                <div className="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                  <svg
+                    className="w-5 h-5"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
+                  </svg>
+                </div>
+                <div>
+                  <div className="font-medium text-primary text-sm">
+                    Facebook
+                  </div>
+                  <div className="text-xs text-gray-500">Прямой эфир</div>
+                </div>
+              </a>
+
               <a
                 href="https://www.christianworldmedia.com/livechannel/radvest"
                 target="_blank"
@@ -141,53 +202,6 @@ export default function LiveStreamPage() {
                   <div className="text-xs text-gray-500">Веб-трансляция</div>
                 </div>
               </a>
-
-              <a
-                href="https://www.facebook.com/radvest/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 p-4 rounded-lg border-2 border-gray-100 hover:border-primary transition-colors"
-              >
-                <div className="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                  <svg
-                    className="w-5 h-5"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
-                  </svg>
-                </div>
-                <div>
-                  <div className="font-medium text-primary text-sm">
-                    Facebook
-                  </div>
-                  <div className="text-xs text-gray-500">Прямой эфир</div>
-                </div>
-              </a>
-
-              <div className="flex items-center gap-3 p-4 rounded-lg border-2 border-gray-100">
-                <div className="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                  <svg
-                    className="w-5 h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                    />
-                  </svg>
-                </div>
-                <div>
-                  <div className="font-medium text-primary text-sm">
-                    Roku
-                  </div>
-                  <div className="text-xs text-gray-500">Канал RadVest</div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
