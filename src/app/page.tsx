@@ -1,0 +1,350 @@
+import Link from "next/link";
+
+function HeroSection() {
+  return (
+    <section className="relative bg-primary text-white overflow-hidden">
+      {/* Background pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 25% 25%, rgba(201,168,76,0.3) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(201,168,76,0.2) 0%, transparent 50%)",
+          }}
+        />
+      </div>
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-32">
+        <div className="text-center max-w-3xl mx-auto">
+          <div className="inline-block px-4 py-1.5 bg-accent/20 rounded-full text-accent text-sm font-medium mb-6">
+            Добро пожаловать
+          </div>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+            Церковь
+            <span className="text-accent"> «Радостная Весть»</span>
+          </h1>
+          <p className="text-lg sm:text-xl text-white/80 mb-4">
+            Евангельская Баптистская Церковь Филадельфии
+          </p>
+          <p className="text-base text-white/60 mb-8 max-w-2xl mx-auto">
+            Зрелые и радостные дети Божьи, созидающие церковь и влияющие на мир
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              href="/livestream"
+              className="px-8 py-3 bg-accent text-primary-dark font-bold rounded-lg hover:bg-accent-light transition-colors w-full sm:w-auto text-center"
+            >
+              Смотреть трансляцию
+            </Link>
+            <Link
+              href="/church"
+              className="px-8 py-3 border-2 border-white/30 text-white font-medium rounded-lg hover:bg-white/10 transition-colors w-full sm:w-auto text-center"
+            >
+              О нашей церкви
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* Wave divider */}
+      <div className="absolute bottom-0 left-0 right-0">
+        <svg viewBox="0 0 1440 80" fill="none" className="w-full">
+          <path
+            d="M0,48L80,42.7C160,37,320,27,480,32C640,37,800,59,960,58.7C1120,59,1280,37,1360,26.7L1440,16L1440,80L1360,80C1280,80,1120,80,960,80C800,80,640,80,480,80C320,80,160,80,80,80L0,80Z"
+            fill="#f8f5f0"
+          />
+        </svg>
+      </div>
+    </section>
+  );
+}
+
+function ServiceTimesSection() {
+  const services = [
+    {
+      day: "Воскресенье",
+      dayEn: "Sunday",
+      times: [
+        { time: "10:00", label: "Утреннее служение", labelEn: "Morning Service" },
+        { time: "18:00", label: "Вечернее служение", labelEn: "Evening Service" },
+      ],
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+        </svg>
+      ),
+    },
+    {
+      day: "Среда",
+      dayEn: "Wednesday",
+      times: [
+        { time: "19:00", label: "Молитвенное собрание", labelEn: "Prayer Meeting" },
+      ],
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+        </svg>
+      ),
+    },
+    {
+      day: "Пятница",
+      dayEn: "Friday",
+      times: [
+        { time: "19:00", label: "Молодёжное служение", labelEn: "Youth Service" },
+      ],
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+        </svg>
+      ),
+    },
+  ];
+
+  return (
+    <section className="bg-warm py-16 sm:py-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl sm:text-4xl font-bold text-primary mb-4">
+            Расписание служений
+          </h2>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            Мы приглашаем вас присоединиться к нашим богослужениям
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {services.map((service) => (
+            <div
+              key={service.day}
+              className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow p-6 text-center"
+            >
+              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+                {service.icon}
+              </div>
+              <h3 className="text-xl font-bold text-primary mb-1">
+                {service.day}
+              </h3>
+              <p className="text-sm text-gray-400 mb-4">{service.dayEn}</p>
+              <div className="space-y-3">
+                {service.times.map((t) => (
+                  <div key={t.time} className="bg-warm rounded-lg p-3">
+                    <div className="text-2xl font-bold text-accent">
+                      {t.time}
+                    </div>
+                    <div className="text-sm text-gray-700 font-medium">
+                      {t.label}
+                    </div>
+                    <div className="text-xs text-gray-400">{t.labelEn}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function AboutPreviewSection() {
+  return (
+    <section className="py-16 sm:py-24 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <div className="inline-block px-3 py-1 bg-accent/10 text-accent rounded-full text-sm font-medium mb-4">
+              С 1913 года
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold text-primary mb-6">
+              О нашей церкви
+            </h2>
+            <p className="text-gray-600 leading-relaxed mb-4">
+              Евангельская Баптистская Церковь Филадельфии «Радостная Весть» была
+              основана в 1913 году иммигрантами из России, Украины и Белоруссии.
+              На протяжении многих лет она оставалась единственной славянской
+              евангельской церковью в Филадельфии.
+            </p>
+            <p className="text-gray-600 leading-relaxed mb-6">
+              Сегодня наша церковная семья является многонациональной — в неё
+              входят русские, украинцы, белорусы, молдаване, гагаузы, грузины,
+              армяне, евреи, американцы и представители других национальностей.
+            </p>
+            <Link
+              href="/church"
+              className="inline-flex items-center gap-2 text-primary font-medium hover:text-accent transition-colors"
+            >
+              Узнать больше
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </Link>
+          </div>
+          <div className="relative">
+            <div className="bg-primary/5 rounded-2xl p-8 sm:p-12">
+              <div className="bg-white rounded-xl shadow-lg p-6 sm:p-8">
+                <blockquote className="text-center">
+                  <svg
+                    className="w-10 h-10 mx-auto mb-4 text-accent/40"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H14.017zM0 21v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151C7.563 6.068 6 8.789 6 11h4v10H0z" />
+                  </svg>
+                  <p className="text-lg text-gray-700 italic mb-4">
+                    «Зрелые и радостные дети Божьи, созидающие церковь и влияющие
+                    на мир»
+                  </p>
+                  <footer className="text-sm text-accent font-medium">
+                    — Наше видение
+                  </footer>
+                </blockquote>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function LiveStreamBanner() {
+  return (
+    <section className="bg-primary text-white py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="flex items-center justify-center gap-2 mb-4">
+          <span className="w-3 h-3 bg-red-500 rounded-full animate-pulse" />
+          <span className="text-sm font-medium text-red-300">
+            Прямая трансляция
+          </span>
+        </div>
+        <h2 className="text-2xl sm:text-3xl font-bold mb-4">
+          Смотрите наши служения онлайн
+        </h2>
+        <p className="text-white/70 mb-8 max-w-xl mx-auto">
+          Присоединяйтесь к нашим богослужениям в прямом эфире, где бы вы ни
+          находились
+        </p>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <Link
+            href="/livestream"
+            className="px-8 py-3 bg-accent text-primary-dark font-bold rounded-lg hover:bg-accent-light transition-colors"
+          >
+            Смотреть трансляцию
+          </Link>
+          <Link
+            href="/media"
+            className="px-8 py-3 border-2 border-white/30 rounded-lg hover:bg-white/10 transition-colors font-medium"
+          >
+            Архив служений
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function LocationSection() {
+  return (
+    <section className="py-16 sm:py-24 bg-warm">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl sm:text-4xl font-bold text-primary mb-4">
+            Как нас найти
+          </h2>
+          <p className="text-gray-600">Мы будем рады видеть вас!</p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Map */}
+          <div className="rounded-xl overflow-hidden shadow-lg h-[400px]">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3044.3!2d-75.0!3d40.15!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c6aee4e1c1c1c1%3A0x0!2s514+Highland+Ave%2C+Feasterville-Trevose%2C+PA+19053!5e0!3m2!1sen!2sus!4v1"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Church location map"
+            />
+          </div>
+
+          {/* Contact Cards */}
+          <div className="space-y-4">
+            <div className="bg-white rounded-xl shadow-md p-6">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-bold text-primary mb-1">Адрес</h3>
+                  <p className="text-gray-600">514 Highland Avenue<br />Feasterville, PA 19053</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-xl shadow-md p-6">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-bold text-primary mb-1">Телефон</h3>
+                  <a href="tel:+12159644468" className="text-gray-600 hover:text-accent transition-colors">(215) 964-4468</a>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-xl shadow-md p-6">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-bold text-primary mb-1">Email</h3>
+                  <a href="mailto:radvest@gmail.com" className="text-gray-600 hover:text-accent transition-colors">radvest@gmail.com</a>
+                </div>
+              </div>
+            </div>
+
+            <Link
+              href="/contact"
+              className="block bg-primary text-white text-center rounded-xl p-6 hover:bg-primary-light transition-colors font-bold text-lg"
+            >
+              Связаться с нами →
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default function Home() {
+  return (
+    <>
+      <HeroSection />
+      <ServiceTimesSection />
+      <AboutPreviewSection />
+      <LiveStreamBanner />
+      <LocationSection />
+    </>
+  );
+}
