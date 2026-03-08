@@ -9,7 +9,7 @@ function HeroSection() {
           className="absolute inset-0"
           style={{
             backgroundImage:
-              "radial-gradient(circle at 25% 25%, rgba(201,168,76,0.3) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(201,168,76,0.2) 0%, transparent 50%)",
+              "radial-gradient(circle at 25% 25%, rgba(232,144,144,0.3) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(232,144,144,0.2) 0%, transparent 50%)",
           }}
         />
       </div>
@@ -51,7 +51,7 @@ function HeroSection() {
         <svg viewBox="0 0 1440 80" fill="none" className="w-full">
           <path
             d="M0,48L80,42.7C160,37,320,27,480,32C640,37,800,59,960,58.7C1120,59,1280,37,1360,26.7L1440,16L1440,80L1360,80C1280,80,1120,80,960,80C800,80,640,80,480,80C320,80,160,80,80,80L0,80Z"
-            fill="#f8f5f0"
+            fill="#f5ece0"
           />
         </svg>
       </div>
