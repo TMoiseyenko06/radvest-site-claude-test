@@ -1,6 +1,11 @@
+"use client";
+
 import Link from "next/link";
+import { useLanguage } from "@/lib/i18n";
 
 export default function Footer() {
+  const { t } = useLanguage();
+
   return (
     <footer className="bg-primary-dark text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -9,38 +14,40 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-3 mb-4">
               <div className="w-10 h-10 rounded-full bg-tan flex items-center justify-center text-primary font-bold text-lg">
-                РВ
+                {t("РВ", "JN")}
               </div>
               <div>
-                <div className="font-bold text-lg">Радостная Весть</div>
+                <div className="font-bold text-lg">{t("Радостная Весть", "Joyful News")}</div>
                 <div className="text-xs text-white/60">
-                  Church of Joyful News
+                  {t("Church of Joyful News", "Church of Joyful News")}
                 </div>
               </div>
             </div>
             <p className="text-white/70 text-sm leading-relaxed">
-              Евангельская Баптистская Церковь Филадельфии — служим Богу и людям
-              с 1913 года.
+              {t(
+                "Евангельская Баптистская Церковь Филадельфии — служим Богу и людям с 1913 года.",
+                "Evangelical Baptist Church of Philadelphia — serving God and people since 1913."
+              )}
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-bold text-tan mb-4">Навигация</h3>
+            <h3 className="font-bold text-tan mb-4">{t("Навигация", "Navigation")}</h3>
             <ul className="space-y-2">
               {[
-                { href: "/", label: "Главная" },
-                { href: "/church", label: "Церковь" },
-                { href: "/media", label: "Медиа" },
-                { href: "/livestream", label: "Прямая Трансляция" },
-                { href: "/contact", label: "Контакты" },
+                { href: "/", label: "Главная", labelEn: "Home" },
+                { href: "/church", label: "Церковь", labelEn: "Church" },
+                { href: "/media", label: "Медиа", labelEn: "Media" },
+                { href: "/livestream", label: "Прямая Трансляция", labelEn: "Live Stream" },
+                { href: "/contact", label: "Контакты", labelEn: "Contact" },
               ].map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
                     className="text-white/70 hover:text-tan transition-colors text-sm"
                   >
-                    {link.label}
+                    {t(link.label, link.labelEn)}
                   </Link>
                 </li>
               ))}
@@ -49,7 +56,7 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h3 className="font-bold text-tan mb-4">Контакты</h3>
+            <h3 className="font-bold text-tan mb-4">{t("Контакты", "Contact")}</h3>
             <div className="space-y-3 text-sm text-white/70">
               <div className="flex items-start gap-2">
                 <svg

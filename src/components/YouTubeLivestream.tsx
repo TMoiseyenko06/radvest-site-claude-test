@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useLanguage } from "@/lib/i18n";
 
 interface StreamInfo {
   id: string;
@@ -16,16 +17,15 @@ interface YouTubeData {
   error?: string;
 }
 
-function formatDate(dateStr: string) {
+function formatDate(dateStr: string, locale: "ru" | "en") {
   const date = new Date(dateStr);
-  const months = [
-    "января", "февраля", "марта", "апреля", "мая", "июня",
-    "июля", "августа", "сентября", "октября", "ноября", "декабря",
-  ];
-  const dayNames = [
-    "Воскресенье", "Понедельник", "Вторник", "Среда",
-    "Четверг", "Пятница", "Суббота",
-  ];
+  const monthsRu = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
+  const monthsEn = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  const dayNamesRu = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
+  const dayNamesEn = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+  const dayNames = locale === "ru" ? dayNamesRu : dayNamesEn;
+  const months = locale === "ru" ? monthsRu : monthsEn;
   const day = dayNames[date.getDay()];
   const d = date.getDate();
   const month = months[date.getMonth()];
@@ -33,19 +33,23 @@ function formatDate(dateStr: string) {
   const minutes = String(date.getMinutes()).padStart(2, "0");
   const ampm = hours >= 12 ? "PM" : "AM";
   const h12 = hours % 12 || 12;
-  return `${day}, ${d} ${month} — ${h12}:${minutes} ${ampm}`;
+
+  if (locale === "ru") {
+    return `${day}, ${d} ${month} — ${h12}:${minutes} ${ampm}`;
+  }
+  return `${day}, ${month} ${d} — ${h12}:${minutes} ${ampm}`;
 }
 
-function LiveBadge() {
+function LiveBadge({ t }: { t: (ru: string, en: string) => string }) {
   return (
     <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-red-600 text-white text-sm font-bold rounded-full">
       <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
-      В ЭФИРЕ
+      {t("В ЭФИРЕ", "LIVE")}
     </span>
   );
 }
 
-function NoStreamFallback() {
+function NoStreamFallback({ t }: { t: (ru: string, en: string) => string }) {
   return (
     <div className="aspect-video bg-charcoal rounded-xl flex flex-col items-center justify-center text-white p-8">
       <svg className="w-16 h-16 text-white/20 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -56,10 +60,12 @@ function NoStreamFallback() {
           d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
         />
       </svg>
-      <p className="text-xl font-bold mb-2">Трансляция не активна</p>
+      <p className="text-xl font-bold mb-2">{t("Трансляция не активна", "Stream Not Active")}</p>
       <p className="text-white/50 text-center max-w-md">
-        В данный момент нет активной трансляции. Смотрите расписание ниже для
-        предстоящих служений.
+        {t(
+          "В данный момент нет активной трансляции. Смотрите расписание ниже для предстоящих служений.",
+          "There is no active stream at the moment. Check the schedule below for upcoming services."
+        )}
       </p>
     </div>
   );
@@ -68,6 +74,7 @@ function NoStreamFallback() {
 export default function YouTubeLivestream() {
   const [data, setData] = useState<YouTubeData | null>(null);
   const [loading, setLoading] = useState(true);
+  const { locale, t } = useLanguage();
 
   useEffect(() => {
     fetch("/api/youtube")
@@ -91,7 +98,7 @@ export default function YouTubeLivestream() {
         ) : liveStream ? (
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <LiveBadge />
+              <LiveBadge t={t} />
               <h2 className="text-xl font-bold text-white truncate">
                 {liveStream.title}
               </h2>
@@ -102,12 +109,12 @@ export default function YouTubeLivestream() {
                 className="w-full h-full"
                 allowFullScreen
                 allow="autoplay; encrypted-media"
-                title="Прямая трансляция"
+                title={t("Прямая трансляция", "Live Stream")}
               />
             </div>
           </div>
         ) : (
-          <NoStreamFallback />
+          <NoStreamFallback t={t} />
         )}
       </div>
 
@@ -115,7 +122,7 @@ export default function YouTubeLivestream() {
       {upcoming.length > 0 && (
         <div>
           <h3 className="text-lg font-bold text-white mb-4">
-            Предстоящие трансляции
+            {t("Предстоящие трансляции", "Upcoming Streams")}
           </h3>
           <div className="space-y-3">
             {upcoming.map((stream) => (
@@ -150,11 +157,11 @@ export default function YouTubeLivestream() {
                   </p>
                   {stream.scheduledStart && (
                     <p className="text-sm text-white/50 mt-1">
-                      {formatDate(stream.scheduledStart)}
+                      {formatDate(stream.scheduledStart, locale)}
                     </p>
                   )}
                   <span className="inline-block mt-2 text-xs px-2 py-0.5 bg-tan/20 text-tan rounded-full">
-                    Запланировано
+                    {t("Запланировано", "Scheduled")}
                   </span>
                 </div>
               </a>

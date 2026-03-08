@@ -1,10 +1,14 @@
+"use client";
+
 import Link from "next/link";
 import NextService from "@/components/NextService";
+import { useLanguage } from "@/lib/i18n";
 
 function HeroSection() {
+  const { t } = useLanguage();
+
   return (
     <section className="relative bg-primary text-white overflow-hidden">
-      {/* Background pattern */}
       <div className="absolute inset-0 opacity-10">
         <div
           className="absolute inset-0"
@@ -18,36 +22,41 @@ function HeroSection() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-32">
         <div className="text-center max-w-3xl mx-auto">
           <div className="inline-block px-4 py-1.5 bg-tan/30 rounded-full text-tan text-sm font-medium mb-6">
-            Добро пожаловать
+            {t("Добро пожаловать", "Welcome")}
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-            Церковь
-            <span className="text-tan"> «Радостная Весть»</span>
+            {t("Церковь", "Church")}
+            <span className="text-tan"> {t("«Радостная Весть»", "\"Joyful News\"")}</span>
           </h1>
           <p className="text-lg sm:text-xl text-white/80 mb-4">
-            Евангельская Баптистская Церковь Филадельфии
+            {t(
+              "Евангельская Баптистская Церковь Филадельфии",
+              "Evangelical Baptist Church of Philadelphia"
+            )}
           </p>
           <p className="text-base text-white/60 mb-8 max-w-2xl mx-auto">
-            Зрелые и радостные дети Божьи, созидающие церковь и влияющие на мир
+            {t(
+              "Зрелые и радостные дети Божьи, созидающие церковь и влияющие на мир",
+              "Mature and joyful children of God, building the church and impacting the world"
+            )}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/livestream"
               className="px-8 py-3 bg-tan text-charcoal font-bold rounded-lg hover:bg-tan-light transition-colors w-full sm:w-auto text-center"
             >
-              Смотреть трансляцию
+              {t("Смотреть трансляцию", "Watch Live")}
             </Link>
             <Link
               href="/church"
               className="px-8 py-3 border-2 border-white/30 text-white font-medium rounded-lg hover:bg-white/10 transition-colors w-full sm:w-auto text-center"
             >
-              О нашей церкви
+              {t("О нашей церкви", "About Our Church")}
             </Link>
           </div>
         </div>
       </div>
 
-      {/* Wave divider */}
       <div className="absolute bottom-0 left-0 right-0">
         <svg viewBox="0 0 1440 80" fill="none" className="w-full">
           <path
@@ -61,13 +70,14 @@ function HeroSection() {
 }
 
 function ServiceTimesSection() {
+  const { t } = useLanguage();
+
   const services = [
     {
-      day: "Воскресенье",
-      dayEn: "Sunday",
+      day: t("Воскресенье", "Sunday"),
       times: [
-        { time: "10:00 AM", label: "Утреннее служение", labelEn: "Morning Service" },
-        { time: "6:00 PM", label: "Вечернее служение", labelEn: "Evening Service" },
+        { time: "10:00 AM", label: t("Утреннее служение", "Morning Service") },
+        { time: "6:00 PM", label: t("Вечернее служение", "Evening Service") },
       ],
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -76,10 +86,9 @@ function ServiceTimesSection() {
       ),
     },
     {
-      day: "Четверг",
-      dayEn: "Thursday",
+      day: t("Четверг", "Thursday"),
       times: [
-        { time: "7:00 PM", label: "Служение по четвергам", labelEn: "Thursday Service" },
+        { time: "7:00 PM", label: t("Служение по четвергам", "Thursday Service") },
       ],
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -94,10 +103,13 @@ function ServiceTimesSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold text-primary mb-4">
-            Расписание служений
+            {t("Расписание служений", "Service Schedule")}
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Мы приглашаем вас присоединиться к нашим богослужениям
+            {t(
+              "Мы приглашаем вас присоединиться к нашим богослужениям",
+              "We invite you to join our worship services"
+            )}
           </p>
         </div>
 
@@ -110,20 +122,18 @@ function ServiceTimesSection() {
               <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 text-primary flex items-center justify-center">
                 {service.icon}
               </div>
-              <h3 className="text-xl font-bold text-primary mb-1">
+              <h3 className="text-xl font-bold text-primary mb-4">
                 {service.day}
               </h3>
-              <p className="text-sm text-gray-400 mb-4">{service.dayEn}</p>
               <div className="space-y-3">
-                {service.times.map((t) => (
-                  <div key={t.time} className="bg-warm rounded-lg p-3">
+                {service.times.map((st) => (
+                  <div key={st.time} className="bg-warm rounded-lg p-3">
                     <div className="text-2xl font-bold text-primary">
-                      {t.time}
+                      {st.time}
                     </div>
                     <div className="text-sm text-gray-700 font-medium">
-                      {t.label}
+                      {st.label}
                     </div>
-                    <div className="text-xs text-gray-400">{t.labelEn}</div>
                   </div>
                 ))}
               </div>
@@ -136,45 +146,38 @@ function ServiceTimesSection() {
 }
 
 function AboutPreviewSection() {
+  const { t } = useLanguage();
+
   return (
     <section className="py-16 sm:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <div className="inline-block px-3 py-1 bg-tan/20 text-tan rounded-full text-sm font-medium mb-4">
-              С 1913 года
+              {t("С 1913 года", "Since 1913")}
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold text-primary mb-6">
-              О нашей церкви
+              {t("О нашей церкви", "About Our Church")}
             </h2>
             <p className="text-gray-600 leading-relaxed mb-4">
-              Евангельская Баптистская Церковь Филадельфии «Радостная Весть» была
-              основана в 1913 году иммигрантами из России, Украины и Белоруссии.
-              На протяжении многих лет она оставалась единственной славянской
-              евангельской церковью в Филадельфии.
+              {t(
+                "Евангельская Баптистская Церковь Филадельфии «Радостная Весть» была основана в 1913 году иммигрантами из России, Украины и Белоруссии. На протяжении многих лет она оставалась единственной славянской евангельской церковью в Филадельфии.",
+                "The Evangelical Baptist Church of Philadelphia \"Joyful News\" was founded in 1913 by immigrants from Russia, Ukraine, and Belarus. For many years, it remained the only Slavic evangelical church in Philadelphia."
+              )}
             </p>
             <p className="text-gray-600 leading-relaxed mb-6">
-              Сегодня наша церковная семья является многонациональной — в неё
-              входят русские, украинцы, белорусы, молдаване, гагаузы, грузины,
-              армяне, евреи, американцы и представители других национальностей.
+              {t(
+                "Сегодня наша церковная семья является многонациональной — в неё входят русские, украинцы, белорусы, молдаване, гагаузы, грузины, армяне, евреи, американцы и представители других национальностей.",
+                "Today our church family is multinational — it includes Russians, Ukrainians, Belarusians, Moldovans, Gagauz, Georgians, Armenians, Jews, Americans, and people of other nationalities."
+              )}
             </p>
             <Link
               href="/church"
               className="inline-flex items-center gap-2 text-primary font-medium hover:text-primary-light transition-colors"
             >
-              Узнать больше
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 5l7 7-7 7"
-                />
+              {t("Узнать больше", "Learn More")}
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </Link>
           </div>
@@ -182,19 +185,17 @@ function AboutPreviewSection() {
             <div className="bg-primary/5 rounded-2xl p-8 sm:p-12">
               <div className="bg-white rounded-xl shadow-lg p-6 sm:p-8">
                 <blockquote className="text-center">
-                  <svg
-                    className="w-10 h-10 mx-auto mb-4 text-primary/40"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
+                  <svg className="w-10 h-10 mx-auto mb-4 text-primary/40" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H14.017zM0 21v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151C7.563 6.068 6 8.789 6 11h4v10H0z" />
                   </svg>
                   <p className="text-lg text-gray-700 italic mb-4">
-                    «Зрелые и радостные дети Божьи, созидающие церковь и влияющие
-                    на мир»
+                    {t(
+                      "«Зрелые и радостные дети Божьи, созидающие церковь и влияющие на мир»",
+                      "\"Mature and joyful children of God, building the church and impacting the world\""
+                    )}
                   </p>
                   <footer className="text-sm text-primary font-medium">
-                    — Наше видение
+                    — {t("Наше видение", "Our Vision")}
                   </footer>
                 </blockquote>
               </div>
@@ -207,34 +208,38 @@ function AboutPreviewSection() {
 }
 
 function LiveStreamBanner() {
+  const { t } = useLanguage();
+
   return (
     <section className="bg-primary text-white py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="flex items-center justify-center gap-2 mb-4">
           <span className="w-3 h-3 bg-red-500 rounded-full animate-pulse" />
           <span className="text-sm font-medium text-red-300">
-            Прямая трансляция
+            {t("Прямая трансляция", "Live Stream")}
           </span>
         </div>
         <h2 className="text-2xl sm:text-3xl font-bold mb-4">
-          Смотрите наши служения онлайн
+          {t("Смотрите наши служения онлайн", "Watch Our Services Online")}
         </h2>
         <p className="text-white/70 mb-8 max-w-xl mx-auto">
-          Присоединяйтесь к нашим богослужениям в прямом эфире, где бы вы ни
-          находились
+          {t(
+            "Присоединяйтесь к нашим богослужениям в прямом эфире, где бы вы ни находились",
+            "Join our worship services live, wherever you are"
+          )}
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
             href="/livestream"
             className="px-8 py-3 bg-tan text-charcoal font-bold rounded-lg hover:bg-tan-light transition-colors"
           >
-            Смотреть трансляцию
+            {t("Смотреть трансляцию", "Watch Live")}
           </Link>
           <Link
             href="/media"
             className="px-8 py-3 border-2 border-white/30 rounded-lg hover:bg-white/10 transition-colors font-medium"
           >
-            Архив служений
+            {t("Архив служений", "Service Archive")}
           </Link>
         </div>
       </div>
@@ -243,18 +248,19 @@ function LiveStreamBanner() {
 }
 
 function LocationSection() {
+  const { t } = useLanguage();
+
   return (
     <section className="py-16 sm:py-24 bg-warm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold text-primary mb-4">
-            Как нас найти
+            {t("Как нас найти", "How to Find Us")}
           </h2>
-          <p className="text-gray-600">Мы будем рады видеть вас!</p>
+          <p className="text-gray-600">{t("Мы будем рады видеть вас!", "We look forward to seeing you!")}</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Map */}
           <div className="rounded-xl overflow-hidden shadow-lg h-[400px]">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3044.3!2d-75.0!3d40.15!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c6aee4e1c1c1c1%3A0x0!2s514+Highland+Ave%2C+Feasterville-Trevose%2C+PA+19053!5e0!3m2!1sen!2sus!4v1"
@@ -268,7 +274,6 @@ function LocationSection() {
             />
           </div>
 
-          {/* Contact Cards */}
           <div className="space-y-4">
             <div className="bg-white rounded-xl shadow-md p-6">
               <div className="flex items-start gap-4">
@@ -279,7 +284,7 @@ function LocationSection() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="font-bold text-primary mb-1">Адрес</h3>
+                  <h3 className="font-bold text-primary mb-1">{t("Адрес", "Address")}</h3>
                   <p className="text-gray-600">514 Highland Avenue<br />Feasterville, PA 19053</p>
                 </div>
               </div>
@@ -293,7 +298,7 @@ function LocationSection() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="font-bold text-primary mb-1">Телефон</h3>
+                  <h3 className="font-bold text-primary mb-1">{t("Телефон", "Phone")}</h3>
                   <a href="tel:+12159644468" className="text-gray-600 hover:text-primary-light transition-colors">(215) 964-4468</a>
                 </div>
               </div>
@@ -317,7 +322,7 @@ function LocationSection() {
               href="/contact"
               className="block bg-primary text-white text-center rounded-xl p-6 hover:bg-primary-light transition-colors font-bold text-lg"
             >
-              Связаться с нами →
+              {t("Связаться с нами →", "Contact Us →")}
             </Link>
           </div>
         </div>

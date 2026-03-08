@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useLanguage } from "@/lib/i18n";
 
 interface ServiceSchedule {
   dayOfWeek: number;
@@ -14,7 +15,9 @@ interface ServiceInfo {
   name: string;
   nameEn: string;
   day: string;
+  dayEn: string;
   time: string;
+  timeEn: string;
   date: Date;
 }
 
@@ -32,16 +35,20 @@ const SERVICES: ServiceSchedule[] = [
   { dayOfWeek: 4, hour: 19, minute: 0, name: "Служение по четвергам", nameEn: "Thursday Service" },
 ];
 
-const DAY_NAMES = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
-const MONTHS = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
+const DAY_NAMES_RU = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
+const DAY_NAMES_EN = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const MONTHS_RU = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
+const MONTHS_EN = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 function buildServiceInfo(service: ServiceSchedule, date: Date): ServiceInfo {
   const timeStr = `${service.hour}:${String(service.minute).padStart(2, "0")}`;
   return {
     name: service.name,
     nameEn: service.nameEn,
-    day: DAY_NAMES[service.dayOfWeek],
-    time: `${date.getDate()} ${MONTHS[date.getMonth()]}, ${timeStr}`,
+    day: DAY_NAMES_RU[service.dayOfWeek],
+    dayEn: DAY_NAMES_EN[service.dayOfWeek],
+    time: `${date.getDate()} ${MONTHS_RU[date.getMonth()]}, ${timeStr}`,
+    timeEn: `${MONTHS_EN[date.getMonth()]} ${date.getDate()}, ${timeStr}`,
     date,
   };
 }
@@ -113,6 +120,7 @@ function getServiceState(): ServiceState {
 
 export default function NextService() {
   const [state, setState] = useState<ServiceState | null>(null);
+  const { t } = useLanguage();
 
   useEffect(() => {
     function update() {
@@ -132,12 +140,12 @@ export default function NextService() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <span className="inline-flex items-center gap-2 px-4 py-2 bg-red-600 rounded-full text-sm font-bold">
               <span className="w-2.5 h-2.5 bg-white rounded-full animate-pulse" />
-              СЕЙЧАС ИДЁТ
+              {t("СЕЙЧАС ИДЁТ", "NOW LIVE")}
             </span>
             <div className="text-center sm:text-left">
-              <div className="font-bold text-lg">{state.service.name}</div>
+              <div className="font-bold text-lg">{t(state.service.name, state.service.nameEn)}</div>
               <div className="text-sm text-white/70">
-                {state.service.day}, {state.service.time}
+                {t(state.service.day, state.service.dayEn)}, {t(state.service.time, state.service.timeEn)}
               </div>
             </div>
           </div>
@@ -152,21 +160,21 @@ export default function NextService() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
           <div className="text-center sm:text-left">
             <div className="text-xs uppercase tracking-wider text-white/60 mb-1">
-              Следующее служение
+              {t("Следующее служение", "Next Service")}
             </div>
             <div className="font-bold text-lg">
-              {state.service.name}
+              {t(state.service.name, state.service.nameEn)}
             </div>
             <div className="text-sm text-white/70">
-              {state.service.day}, {state.service.time}
+              {t(state.service.day, state.service.dayEn)}, {t(state.service.time, state.service.timeEn)}
             </div>
           </div>
           <div className="flex items-center gap-3">
             {[
-              { value: state.countdown.days, label: "дн" },
-              { value: state.countdown.hours, label: "ч" },
-              { value: state.countdown.minutes, label: "мин" },
-              { value: state.countdown.seconds, label: "сек" },
+              { value: state.countdown.days, label: t("дн", "d") },
+              { value: state.countdown.hours, label: t("ч", "h") },
+              { value: state.countdown.minutes, label: t("мин", "m") },
+              { value: state.countdown.seconds, label: t("сек", "s") },
             ].map((unit) => (
               <div key={unit.label} className="text-center">
                 <div className="bg-white/10 rounded-lg w-14 h-14 flex items-center justify-center text-2xl font-bold">

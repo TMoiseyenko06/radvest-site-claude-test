@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useLanguage } from "@/lib/i18n";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -10,6 +11,7 @@ export default function ContactPage() {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const { t } = useLanguage();
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -22,10 +24,13 @@ export default function ContactPage() {
       <section className="bg-primary text-white py-16 sm:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl sm:text-5xl font-bold mb-4">
-            <span className="text-tan">Контакты</span>
+            <span className="text-tan">{t("Контакты", "Contact")}</span>
           </h1>
           <p className="text-white/70 max-w-2xl mx-auto text-lg">
-            Свяжитесь с нами — мы будем рады ответить на ваши вопросы
+            {t(
+              "Свяжитесь с нами — мы будем рады ответить на ваши вопросы",
+              "Get in touch — we would love to answer your questions"
+            )}
           </p>
         </div>
       </section>
@@ -37,7 +42,7 @@ export default function ContactPage() {
             {/* Contact Information */}
             <div>
               <h2 className="text-2xl font-bold text-primary mb-6">
-                Наша информация
+                {t("Наша информация", "Our Information")}
               </h2>
 
               <div className="space-y-6">
@@ -65,7 +70,7 @@ export default function ContactPage() {
                       </svg>
                     </div>
                     <div>
-                      <h3 className="font-bold text-primary mb-1">Адрес</h3>
+                      <h3 className="font-bold text-primary mb-1">{t("Адрес", "Address")}</h3>
                       <p className="text-gray-600">
                         514 Highland Avenue
                         <br />
@@ -95,7 +100,7 @@ export default function ContactPage() {
                       </svg>
                     </div>
                     <div>
-                      <h3 className="font-bold text-primary mb-1">Телефон</h3>
+                      <h3 className="font-bold text-primary mb-1">{t("Телефон", "Phone")}</h3>
                       <a
                         href="tel:+12159644468"
                         className="text-gray-600 hover:text-primary transition-colors"
@@ -138,24 +143,24 @@ export default function ContactPage() {
                 {/* Service Times */}
                 <div className="bg-primary rounded-xl p-6 text-white">
                   <h3 className="font-bold text-tan mb-4">
-                    Расписание служений
+                    {t("Расписание служений", "Service Schedule")}
                   </h3>
                   <div className="space-y-3 text-sm">
                     <div className="flex justify-between">
                       <span className="text-white/70">
-                        Воскресенье (утро)
+                        {t("Воскресенье (утро)", "Sunday (morning)")}
                       </span>
                       <span className="font-medium">10:00 AM</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-white/70">
-                        Воскресенье (вечер)
+                        {t("Воскресенье (вечер)", "Sunday (evening)")}
                       </span>
                       <span className="font-medium">6:00 PM</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-white/70">
-                        Четверг
+                        {t("Четверг", "Thursday")}
                       </span>
                       <span className="font-medium">7:00 PM</span>
                     </div>
@@ -167,7 +172,7 @@ export default function ContactPage() {
             {/* Contact Form */}
             <div>
               <h2 className="text-2xl font-bold text-primary mb-6">
-                Напишите нам
+                {t("Напишите нам", "Write to Us")}
               </h2>
 
               {submitted ? (
@@ -188,11 +193,13 @@ export default function ContactPage() {
                     </svg>
                   </div>
                   <h3 className="text-xl font-bold text-primary mb-2">
-                    Спасибо!
+                    {t("Спасибо!", "Thank You!")}
                   </h3>
                   <p className="text-gray-600">
-                    Ваше сообщение отправлено. Мы свяжемся с вами в ближайшее
-                    время.
+                    {t(
+                      "Ваше сообщение отправлено. Мы свяжемся с вами в ближайшее время.",
+                      "Your message has been sent. We will get back to you shortly."
+                    )}
                   </p>
                   <button
                     onClick={() => {
@@ -201,7 +208,7 @@ export default function ContactPage() {
                     }}
                     className="mt-4 text-primary font-medium hover:underline"
                   >
-                    Отправить ещё одно сообщение
+                    {t("Отправить ещё одно сообщение", "Send Another Message")}
                   </button>
                 </div>
               ) : (
@@ -214,7 +221,7 @@ export default function ContactPage() {
                       htmlFor="name"
                       className="block text-sm font-medium text-gray-700 mb-1"
                     >
-                      Имя <span className="text-red-500">*</span>
+                      {t("Имя", "Name")} <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="text"
@@ -225,7 +232,7 @@ export default function ContactPage() {
                         setFormData({ ...formData, name: e.target.value })
                       }
                       className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-colors"
-                      placeholder="Ваше имя"
+                      placeholder={t("Ваше имя", "Your name")}
                     />
                   </div>
 
@@ -254,7 +261,7 @@ export default function ContactPage() {
                       htmlFor="phone"
                       className="block text-sm font-medium text-gray-700 mb-1"
                     >
-                      Телефон
+                      {t("Телефон", "Phone")}
                     </label>
                     <input
                       type="tel"
@@ -273,7 +280,7 @@ export default function ContactPage() {
                       htmlFor="message"
                       className="block text-sm font-medium text-gray-700 mb-1"
                     >
-                      Сообщение <span className="text-red-500">*</span>
+                      {t("Сообщение", "Message")} <span className="text-red-500">*</span>
                     </label>
                     <textarea
                       id="message"
@@ -284,7 +291,7 @@ export default function ContactPage() {
                         setFormData({ ...formData, message: e.target.value })
                       }
                       className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-colors resize-none"
-                      placeholder="Ваше сообщение..."
+                      placeholder={t("Ваше сообщение...", "Your message...")}
                     />
                   </div>
 
@@ -292,7 +299,7 @@ export default function ContactPage() {
                     type="submit"
                     className="w-full px-6 py-3 bg-primary text-white font-bold rounded-lg hover:bg-primary-light transition-colors"
                   >
-                    Отправить сообщение
+                    {t("Отправить сообщение", "Send Message")}
                   </button>
                 </form>
               )}
