@@ -155,13 +155,7 @@ export default function ContactPage() {
                     </div>
                     <div className="flex justify-between">
                       <span className="text-white/70">
-                        Среда (молитва)
-                      </span>
-                      <span className="font-medium">7:00 PM</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-white/70">
-                        Пятница (молодёжь)
+                        Четверг
                       </span>
                       <span className="font-medium">7:00 PM</span>
                     </div>
