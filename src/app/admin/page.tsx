@@ -318,9 +318,9 @@ export default function AdminPage() {
 
             <button
               type="submit"
-              className="px-6 py-3 bg-primary text-white font-bold rounded-lg hover:bg-primary-light transition-colors"
+              className="w-full sm:w-auto px-8 py-3 bg-primary text-white font-bold rounded-lg hover:bg-primary-light transition-colors text-lg"
             >
-              Add Service
+              + Add Service
             </button>
           </form>
         </div>
